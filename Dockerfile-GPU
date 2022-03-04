@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3-dev pyt
 
 # Install required Python packages
 RUN pip3 install --upgrade pip
-RUN pip3 install numpy scipy cython librosa future
+RUN pip3 install numpy scipy cython librosa future markupsafe
 
 # Obtain libgpuarray  & pygpu.
 RUN git clone https://github.com/Theano/libgpuarray.git
