@@ -3,8 +3,9 @@
 # of 0.02 means that a species must occur on at least 2% of all checklists
 # for a location to be considered plausible.
 EBIRD_SPECIES_CODES = 'metadata/eBird_taxonomy_codes_2018.json'
+CUSTOM_LIST = 'custom_list_".txt'
 EBIRD_MDATA = 'metadata/eBird_grid_data_weekly.gz'
-USE_EBIRD_CHECKLIST = True
+USE_EBIRD_CHECKLIST = False
 EBIRD_THRESHOLD = 0.02
 DEPLOYMENT_LOCATION = (-1, -1)
 DEPLOYMENT_WEEK = -1

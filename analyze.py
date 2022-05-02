@@ -2,9 +2,9 @@ import os
 import argparse
 import time
 import numpy as np
+import json
 
 import config as cfg
-from metadata import grid
 from utils import audio
 from model import model
 from utils import log
@@ -48,20 +48,16 @@ def loadModel():
     return test_function
 
 ######################### EBIRD #########################
-def loadGridData():
-    grid.load()
+def loadCustomSpeciesList():
 
-def setSpeciesList(lat, lon, week):
+    slist = []
 
-    if not week in range(1, 49):
-        week = -1
+    with open('custom_list.txt', 'r') as csfile:
+            for line in csfile.readlines():
+                slist.append(line.replace('\r', '').replace('\n', ''))
+    white_list = slist
+    return white_list
     
-    if cfg.USE_EBIRD_CHECKLIST:
-        cfg.WHITE_LIST, cfg.BLACK_LIST = grid.getSpeciesLists(lat, lon, week, cfg.EBIRD_THRESHOLD)
-    else:
-        cfg.WHITE_LIST = cfg.CLASSES
-
-    log.p(('SPECIES:', len(cfg.WHITE_LIST)), new_line=False)
 
 ######################  EXPORT ##########################
 def getTimestamp(start, end):
@@ -87,8 +83,8 @@ def decodeTimestamp(t):
     return start_seconds, end_seconds
 
 def getCode(label):
-
-    codes = grid.CODES
+    with open(cfg.EBIRD_SPECIES_CODES, 'r') as jfile:
+        codes = json.load(jfile)
 
     for c in codes:
         if codes[c] == label:
@@ -162,7 +158,6 @@ def analyzeFile(soundscape, test_function):
     pred_start = 0
 
     # Set species list accordingly
-    setSpeciesList(cfg.DEPLOYMENT_LOCATION[0], cfg.DEPLOYMENT_LOCATION[1], cfg.DEPLOYMENT_WEEK)    
 
     # Get specs for file
     spec_batch = []
@@ -266,7 +261,13 @@ def main():
         test_function = loadModel()
 
         # Load eBird grid data
-        loadGridData()
+        if cfg.USE_EBIRD_CHECKLIST:
+            cfg.WHITE_LIST, = loadCustomSpeciesList()
+        else:
+            cfg.WHITE_LIST, = loadCustomSpeciesList()
+
+
+        #loadGridData()
 
         # Adjust config
         cfg.DEPLOYMENT_LOCATION = (args.lat, args.lon)
