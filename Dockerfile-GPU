@@ -24,7 +24,7 @@ RUN cd libgpuarray && \
     ldconfig
 
 # Install Theano
-RUN git clone git://github.com/Theano/Theano.git && \
+RUN git clone https://github.com/Theano/Theano.git && \
     cd Theano && \
     pip3 install -e .
 
