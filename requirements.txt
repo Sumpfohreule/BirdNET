@@ -1,4 +1,8 @@
-numpy
-scipy
-librosa
-future
+numpy==1.19.5
+scipy==1.5.4
+librosa==0.9.1
+future==0.18.2
+MarkupSafe==2.0.1
+Cython==0.29.28
+numba==0.53.1
+typing_extensions==4.1.1
