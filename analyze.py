@@ -262,9 +262,9 @@ def main():
 
         # Load eBird grid data
         if cfg.USE_EBIRD_CHECKLIST:
-            cfg.WHITE_LIST, = loadCustomSpeciesList()
+            cfg.WHITE_LIST = loadCustomSpeciesList()
         else:
-            cfg.WHITE_LIST, = loadCustomSpeciesList()
+            cfg.WHITE_LIST = loadCustomSpeciesList()
 
 
         #loadGridData()
