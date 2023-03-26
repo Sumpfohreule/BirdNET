@@ -1,6 +1,6 @@
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
-Attention: This fork has been heavily modified and does only analyse audio files to find the Eurasian Woodcock.
+Attention: This fork has been modified and does only analyse audio files to find the Eurasian Woodcock.
 Check out the original repository for the full functionallity.
 
 # BirdNET Soundscape Analysis
