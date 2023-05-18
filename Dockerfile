@@ -2,7 +2,15 @@
 FROM python:3.7-slim
 
 # Install required packages while keeping the image small
-RUN apt-get update && apt-get install -y --no-install-recommends git ffmpeg build-essential gfortran libblas-dev liblapack-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    git \
+    ffmpeg \
+    build-essential \
+    gfortran \
+    libblas-dev \
+    liblapack-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install required Python packages
 RUN pip install numpy scipy librosa future
